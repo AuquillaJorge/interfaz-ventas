@@ -25,8 +25,7 @@ function App() {
     let formData = new FormData();
     formData.append('anio', anio);
     formData.append('mes', mes);
-    console.log(formData);
-    fetch('/api/predict1',
+    await fetch('/api/predict1',
       {
         method: "POST",
         mode: 'cors',
@@ -37,8 +36,7 @@ function App() {
       }).then( response => response.json()).then( res => {
         
        let  a= res.prediccion;
-       var conDecimal = a.toFixed(0)
-       mostrarAlerta(conDecimal)
+       mostrarAlerta(a)
        
       }
       );
@@ -54,8 +52,7 @@ function App() {
     let formData = new FormData();
     formData.append('anio', anio);
     formData.append('mes', mes);
-    console.log(formData);
-    fetch('/api/predict',
+    await fetch('/api/predict1',
       {
         method: "POST",
         mode: 'cors',
@@ -64,10 +61,10 @@ function App() {
         },
         body: formData
       }).then( response => response.json()).then( res => {
-        
-       let  a= res.prediccion;
-       var conDecimal = a.toFixed(0)
-       mostrarAlerta(conDecimal)
+        console.log(res.prediccion)
+       let  a= res.prediccion;       
+       mostrarAlerta(a)
+       
       }
       );
   } 
