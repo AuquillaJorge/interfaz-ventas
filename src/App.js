@@ -17,7 +17,8 @@ function App() {
   }
 
   const PeticionPut = async (props) => {
-  
+    let num= (Math.random() * (8000 - 4000 + 1)) + 4000;
+    var conDecimal = num.toFixed(0)
     let anio = document.getElementById('anio').value
     let mes = document.getElementById('mes').value
     console.log("añooo" + anio + "mes" + mes)
@@ -35,7 +36,8 @@ function App() {
       }).then( response => response.json()).then( res => {
         
        let  a= res.prediccion;
-       mostrarAlerta(a)
+       var conDecimal = a.toFixed(0)
+       mostrarAlerta(conDecimal)
        
       }
       );
@@ -43,8 +45,8 @@ function App() {
 
   const PeticionPut1 = async (props) => {
 
-    
-    
+    let num= (Math.random() * (8000 - 4000 + 1)) + 4000;
+    var conDecimal = num.toFixed(0)
     let anio = document.getElementById('anio').value
     let mes = document.getElementById('mes').value
     console.log("añooo" + anio + "mes" + mes)
@@ -62,8 +64,8 @@ function App() {
       }).then( response => response.json()).then( res => {
         
        let  a= res.prediccion;
-      
-       mostrarAlerta(a)
+       var conDecimal = a.toFixed(0)
+       mostrarAlerta(conDecimal)
        
       }
       );
