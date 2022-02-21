@@ -75,6 +75,7 @@ function App() {
     swal({
       title: "Ventas Realizadas",
       text: "Se pronostica un total de " + a +" Ventas",
+      icon: "success",
       button: "Aceptar"
     })
   }
