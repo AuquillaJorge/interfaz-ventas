@@ -11,6 +11,38 @@ function App() {
     event.preventDefault();
   }
   
+  const eventSubmit1 = (event) => {
+    PeticionPut1().then();
+    event.preventDefault();
+  }
+
+  const PeticionPut1 = async (props) => {
+    let num= (Math.random() * (8000 - 4000 + 1)) + 4000;
+    var conDecimal = num.toFixed(0)
+    let anio = document.getElementById('anio').value
+    let mes = document.getElementById('mes').value
+    console.log("añooo" + anio + "mes" + mes)
+    let formData = new FormData();
+    formData.append('anio', anio);
+    formData.append('mes', mes);
+    await fetch('/api/predict1',
+      {
+        method: "POST",
+        mode: 'cors',
+        headers: {
+          'Access-Control-Allow-Origin': 'https://micode52.herokuapp.com/api/predict1', 
+        },
+        body: formData
+      }).then( response => response.json()).then( res => {
+        
+       let  a= res.prediccion;
+       var conDecimal = a.toFixed(0)
+       mostrarAlerta(conDecimal)
+       
+      }
+      );
+  } 
+
   const PeticionPut = async (props) => {
 
     let num= (Math.random() * (8000 - 4000 + 1)) + 4000;
@@ -37,44 +69,64 @@ function App() {
        
       }
       );
-
   } 
 
   const mostrarAlerta = (a) => {
-
     swal({
-      title: "Accidentes de transito",
-      text: " Existira un total de:  " + a,
-      icon: "success",
+      title: "Ventas Realizadas",
+      text: "Se pronostica un total de " + a +" Ventas",
       button: "Aceptar"
-
     })
   }
 
   return (
-
-    <div className="App">
+    <div className="App" >   
+      <div class="card-body">
       <Form onSubmit={eventSubmit} >
-        <h2>Predicción de incidentes de Tránsito con Machine Learning ECU911.</h2>
-        <Form.Group className="mb-3" >
-          <Form.Label>Año</Form.Label>
-          <Form.Control type="number" id="anio" required />
-          <Form.Text className="">
-            Ingresar un año para realizar la Predicción
-          </Form.Text>
-        </Form.Group>
-        <Form.Group className="mb-3" >
-          <Form.Label>Ingrese un mes</Form.Label>
-          <Form.Control type="number" id="mes" required />
-          <Form.Text className="">
-            Ingresar un mes entre el 1 y el 12
-          </Form.Text>
-        </Form.Group>
-        <Button variant="danger" type="submit">Predecir</Button>
+      <div >
+      <Form.Group  >
+      <h3>Calculo de Ventas Tienda #1 </h3>    
+          <Form.Label>Ingresar un año</Form.Label>
+          <Form.Control type="number" id="anio" required /></Form.Group>
+      </div>
+      <div >
+      <Form.Group >
+          <Form.Label>Ingresar un mes  </Form.Label>
+          <Form.Control type="number" id="mes" required /></Form.Group>
+      </div>
+      <div class="card-body">
+      <Button variant="success" type="submit"><h4>Iniciar</h4></Button>
+      </div>
+        
       </Form>
+     </div>      
+          
+      <div class="card-body">
+      <Form onSubmit={eventSubmit1} >
+      <div >
+      <Form.Group  >
+      <h3>Calculo de Ventas Tienda #2 </h3>
+          <Form.Label>Ingresar un año</Form.Label>
+          <Form.Control type="number" id="anio" required />
+        </Form.Group>
+      </div>
+      <div>
+      <Form.Group  >
+          <Form.Label>Ingresar un mes  </Form.Label>
+          <Form.Control type="number" id="mes" required /></Form.Group>
+      </div>     
+      <div class="card-body">
+      <Button variant="success" type="submit"><h4>Iniciar</h4></Button>
+       </div>
+      </Form>  
+     </div>     
     </div>
-
   );
-}
 
+
+
+
+
+
+}
 export default App;
