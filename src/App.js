@@ -16,9 +16,8 @@ function App() {
     event.preventDefault();
   }
 
-  const PeticionPut1 = async (props) => {
-    let num= (Math.random() * (8000 - 4000 + 1)) + 4000;
-    var conDecimal = num.toFixed(0)
+  const PeticionPut = async (props) => {
+  
     let anio = document.getElementById('anio').value
     let mes = document.getElementById('mes').value
     console.log("añooo" + anio + "mes" + mes)
@@ -30,23 +29,22 @@ function App() {
         method: "POST",
         mode: 'cors',
         headers: {
-          'Access-Control-Allow-Origin': 'https://micode52.herokuapp.com/api/predict1', 
+          'Access-Control-Allow-Origin': 'https://micode52.herokuapp.com/api/predict', 
         },
         body: formData
       }).then( response => response.json()).then( res => {
         
        let  a= res.prediccion;
-       var conDecimal = a.toFixed(0)
-       mostrarAlerta(conDecimal)
+       mostrarAlerta(a)
        
       }
       );
   } 
 
-  const PeticionPut = async (props) => {
+  const PeticionPut1 = async (props) => {
 
-    let num= (Math.random() * (8000 - 4000 + 1)) + 4000;
-    var conDecimal = num.toFixed(0)
+    
+    
     let anio = document.getElementById('anio').value
     let mes = document.getElementById('mes').value
     console.log("añooo" + anio + "mes" + mes)
@@ -58,14 +56,14 @@ function App() {
         method: "POST",
         mode: 'cors',
         headers: {
-          'Access-Control-Allow-Origin': 'https://micode52.herokuapp.com/api/predict', 
+          'Access-Control-Allow-Origin': 'https://micode52.herokuapp.com/api/predict1', 
         },
         body: formData
       }).then( response => response.json()).then( res => {
-       alert(res.prediccion)        
+        
        let  a= res.prediccion;
-       var conDecimal = a.toFixed(0)
-       mostrarAlerta(conDecimal)
+      
+       mostrarAlerta(a)
        
       }
       );
