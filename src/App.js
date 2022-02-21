@@ -11,37 +11,8 @@ function App() {
     event.preventDefault();
   }
   
-  const eventSubmit1 = (event) => {
-    PeticionPut1().then();
-    event.preventDefault();
-  }
 
-  const PeticionPut1 = async (props) => {
-    let num= (Math.random() * (8000 - 4000 + 1)) + 4000;
-    var conDecimal = num.toFixed(0)
-    let anio = document.getElementById('anio').value
-    let mes = document.getElementById('mes').value
-    console.log("añooo" + anio + "mes" + mes)
-    let formData = new FormData();
-    formData.append('anio', anio);
-    formData.append('mes', mes);
-    await fetch('/api/predict1',
-      {
-        method: "POST",
-        mode: 'cors',
-        headers: {
-          'Access-Control-Allow-Origin': 'https://micode52.herokuapp.com/api/predict1', 
-        },
-        body: formData
-      }).then( response => response.json()).then( res => {
-        
-       let  a= res.prediccion;
-       var conDecimal = a.toFixed(0)
-       mostrarAlerta(conDecimal)
-       
-      }
-      );
-  } 
+
 
   const PeticionPut = async (props) => {
 
@@ -102,7 +73,7 @@ function App() {
      </div>      
           
       <div class="card-body">
-      <Form onSubmit={eventSubmit1} >
+      <Form onSubmit={eventSubmit} >
       <div >
       <Form.Group  >
       <h3>Calculo de Ventas Tienda #2 </h3>
