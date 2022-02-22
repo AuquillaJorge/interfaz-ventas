@@ -34,8 +34,11 @@ function App() {
         },
         body: formData
       }).then( response => response.json()).then( res => {
-        let  a= res.prediccion;         
+        alert('1')
+        let  a= res.prediccion;
+        alert('2')         
         a = Number(a)   
+        alert('3')
         var conDecimal = a.toFixed(0) 
         mostrarAlerta(conDecimal) 
       }
