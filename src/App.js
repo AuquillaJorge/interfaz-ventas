@@ -34,10 +34,10 @@ function App() {
         },
         body: formData
       }).then( response => response.json()).then( res => {
-        
-       let  a= res.prediccion;
-       mostrarAlerta(a)
-       
+        let  a= res.prediccion;         
+        a = Number(a)   
+        var conDecimal = a.toFixed(0) 
+        mostrarAlerta(conDecimal) 
       }
       );
   } 
@@ -61,10 +61,10 @@ function App() {
         },
         body: formData
       }).then( response => response.json()).then( res => {
-        console.log(res.prediccion)
-       let  a= res.prediccion;       
-       mostrarAlerta(a)
-       
+       let  a= res.prediccion; 
+       a = Number(a)   
+       var conDecimal = a.toFixed(0) 
+       mostrarAlerta(conDecimal)       
       }
       );
   } 
