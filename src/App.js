@@ -25,7 +25,7 @@ function App() {
     let formData = new FormData();
     formData.append('anio', anio);
     formData.append('mes', mes);
-    await fetch('/api/predict',
+    await fetch('../api/predict',
       {
         method: "POST",
         mode: 'cors',
@@ -53,22 +53,31 @@ function App() {
     formData.append('anio', anio);
     formData.append('mes', mes);
 
-    
-    
-      await fetch('/api/predict1',
-      {
-        method: "POST",
-        mode: 'cors',
-        headers: {
-       'Access-Control-Allow-Origin': 'https://micode52.herokuapp.com/api/predict1', 
-        },
-       body: formData,
-    }).then(response => alert(response)).then(data => alert(data));
 
 
-
-
-
+      
+    await fetch('../api/predict1', {
+         method: 'POST',
+         headers: {
+           'Access-Control-Allow-Origin': 'https://micode52.herokuapp.com/api/predict1', 
+         },
+         body: formData
+      })
+      .then(function(response) {
+         if(response.ok) {
+            console.log(response.text());
+            mostrarAlerta("1212")
+             return response.text()
+         } else {
+             throw "Error en la llamada Ajax";
+         }
+      })
+      .then(function(texto) {
+         console.log(texto);
+      })
+      .catch(function(err) {
+         console.log(err);
+      });
 
 
 
