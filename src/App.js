@@ -30,17 +30,20 @@ function App() {
         method: "POST",
         mode: 'cors',
         headers: {
-          'Access-Control-Allow-Origin': 'https://micode52.herokuapp.com/api/predict', 
+          'Access-Control-Allow-Origin': 'https://micode52.herokuapp.com/api/predict',
         },
         body: formData
       }).then( response => response.json()).then( res => {
-       let  a= res.prediccion;
+       let  a=  res.prediccion;
        a = Number(a)
        var conDecimal = a.toFixed(0)    
        mostrarAlerta(conDecimal)
       }
       );
   } 
+
+
+
 
   const PeticionPut1 = async (props) => {
 
@@ -53,36 +56,21 @@ function App() {
     formData.append('anio', anio);
     formData.append('mes', mes);
 
-
-
-      
-    await fetch('../api/predict1', {
-         method: 'POST',
-         headers: {
-           'Access-Control-Allow-Origin': 'https://micode52.herokuapp.com/api/predict1', 
-         },
-         body: formData
-      })
-      .then(function(response) {
-         if(response.ok) {
-            console.log(response.text());
-            mostrarAlerta("1212")
-             return response.text()
-         } else {
-             throw "Error en la llamada Ajax";
-         }
-      })
-      .then(function(texto) {
-         console.log(texto);
-      })
-      .catch(function(err) {
-         console.log(err);
-      });
-
-
-
-
-
+    await fetch('../api/predict1',
+    {
+      method: "POST",
+      mode: 'cors',
+      headers: {
+        'Access-Control-Allow-Origin': 'https://micode52.herokuapp.com/api/predict1',
+      },
+      body: formData
+    }).then( response => response.json()).then( res => {
+     let  a=  res.prediccion;
+     a = Number(a)
+     var conDecimal = a.toFixed(0)    
+     mostrarAlerta(conDecimal)
+    }
+    );
   } 
        
 
