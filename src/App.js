@@ -25,7 +25,7 @@ function App() {
     let formData = new FormData();
     formData.append('anio', anio);
     formData.append('mes', mes);
-    await fetch('/api/predict1',
+    await fetch('/api/predict',
       {
         method: "POST",
         mode: 'cors',
@@ -34,13 +34,10 @@ function App() {
         },
         body: formData
       }).then( response => response.json()).then( res => {
-        alert('1')
-        let  a= res.prediccion;
-        alert('2')         
-        a = Number(a)   
-        alert('3')
-        var conDecimal = a.toFixed(0) 
-        mostrarAlerta(conDecimal) 
+       let  a= res.prediccion;
+       a = Number(a)
+       var conDecimal = a.toFixed(0)    
+       mostrarAlerta(conDecimal)
       }
       );
   } 
@@ -55,23 +52,32 @@ function App() {
     let formData = new FormData();
     formData.append('anio', anio);
     formData.append('mes', mes);
-    await fetch('/api/predict1',
+
+    
+    
+      await fetch('/api/predict1',
       {
         method: "POST",
         mode: 'cors',
         headers: {
-          'Access-Control-Allow-Origin': 'https://micode52.herokuapp.com/api/predict1', 
+       'Access-Control-Allow-Origin': 'https://micode52.herokuapp.com/api/predict1', 
         },
-        body: formData
-      }).then( response => response.json()).then( res => {
-       let  a= res.prediccion; 
-       a = Number(a)   
-       var conDecimal = a.toFixed(0) 
-       mostrarAlerta(conDecimal)       
-      }
-      );
-  } 
+       body: formData,
+    }).then(response => alert(response)).then(data => alert(data));
 
+
+
+
+
+
+
+
+
+
+  } 
+       
+
+  
   const mostrarAlerta = (a) => {
     swal({
       title: "Ventas Realizadas",
