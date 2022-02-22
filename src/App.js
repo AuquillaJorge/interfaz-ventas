@@ -55,22 +55,16 @@ function App() {
     let formData = new FormData();
     formData.append('anio', anio);
     formData.append('mes', mes);
+    await fetch('/api/predict',
+      {
+        method: "POST",
+        mode: 'cors',
+        headers: {
+          'Access-Control-Allow-Origin': 'https://micode52.herokuapp.com/api/predict', 
+        },
+        body: formData
+      }).then( response => response.text()).then(  res=>{mostrarAlerta(conDecimal)} );
 
-    await fetch('../api/predict1',
-    {
-      method: "POST",
-      mode: 'cors',
-      headers: {
-        'Access-Control-Allow-Origin': 'https://micode52.herokuapp.com/api/predict1',
-      },
-      body: formData
-    }).then( response => response.json()).then( res => {
-     let  a=  res.prediccion;
-     a = Number(a)
-     var conDecimal = a.toFixed(0)    
-     mostrarAlerta(conDecimal)
-    }
-    );
   } 
        
 
