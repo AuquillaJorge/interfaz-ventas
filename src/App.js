@@ -44,7 +44,6 @@ function App() {
 
 
   const PeticionPut1 = async (props) => {
-
     let num= (Math.random() * (8000 - 4000 + 1)) + 4000;
     var conDecimal = num.toFixed(0)
     let anio = document.getElementById('anio1').value
@@ -61,7 +60,10 @@ function App() {
           'Access-Control-Allow-Origin': 'https://micode52.herokuapp.com/api/predict1', 
         },
         body: formData
-      }).then( response => response.text()).then(  res=>{mostrarAlerta(conDecimal)} );
+      }).then( response => response.text()).then(  res=>{
+        mostrarAlerta(conDecimal)
+      
+      } );
 
   } 
        
@@ -71,8 +73,8 @@ function App() {
     swal({
       title: "Ventas Realizadas",
       text: "Se pronostica un total de " + a +" Ventas",
-      icon: "success",
-      button: "Aceptar"
+      icon: "info",
+      button: "Ok"
     })
   }
 
@@ -89,7 +91,7 @@ function App() {
       <div >
       <Form.Group >
           <Form.Label>Ingresar un mes  </Form.Label>
-          <Form.Control type="number" id="mes" required /></Form.Group>
+          <Form.Control type="number" id="mes" required  min="1" max="12"  /></Form.Group>
       </div>
       <div class="card-body">
       <Button variant="success" type="submit"><h4>Iniciar</h4></Button>
@@ -110,7 +112,7 @@ function App() {
       <div>
       <Form.Group  >
           <Form.Label>Ingresar un mes  </Form.Label>
-          <Form.Control type="number" id="mes1" required /></Form.Group>
+          <Form.Control type="number" id="mes1" required min="1" max="12" /></Form.Group>
       </div>     
       <div class="card-body">
       <Button variant="success" type="submit"><h4>Iniciar</h4></Button>
