@@ -61,13 +61,20 @@ function App() {
         },
         body: formData
       }).then( response => response.text()).then(  res=>{
+        test();
         mostrarAlerta(conDecimal)
-      
       } );
 
   } 
        
-
+  async function test() {
+    console.log('start timer');
+    await delay(6000);
+    console.log('after 1 second');
+  }
+  function delay(time) {
+    return new Promise(resolve => setTimeout(resolve, time));
+  }
   
   const mostrarAlerta = (a) => {
     let b = parseInt(a)+ 1325
@@ -86,7 +93,13 @@ function App() {
       <Form onSubmit={eventSubmit} >
       <div >
       <Form.Group  >
-      <h3>Calculo de Ventas Tienda #1 </h3>    
+      <h3>Calculo de Ventas  </h3> 
+      <Form.Label>Seleccione un producto  </Form.Label>
+          <select class="form-control" aria-label="Default select example">
+            <option selected> TIENDA DE COMESTIBLES</option>
+            <option value="1">BEBIDAS</option>
+            <option value="2">LÁCTEOS</option>
+          </select>   
           <Form.Label>Ingresar un año</Form.Label>
           <Form.Control type="number" id="anio" required min="2010"/></Form.Group>
       </div>
@@ -94,6 +107,8 @@ function App() {
       <Form.Group >
           <Form.Label>Ingresar un mes  </Form.Label>
           <Form.Control type="number" id="mes" required  min="1" max="12"  /></Form.Group>
+          
+          
       </div>
       <div class="card-body">
       <Button variant="success" type="submit"><h4>Iniciar</h4></Button>
@@ -102,25 +117,7 @@ function App() {
       </Form>
      </div>      
           
-      <div class="card-body">
-      <Form onSubmit={eventSubmit1} >
-      <div >
-      <Form.Group  >
-      <h3>Calculo de Ventas Tienda #2 </h3>
-          <Form.Label>Ingresar un año</Form.Label>
-          <Form.Control type="number" id="anio1" required min="2010" />
-        </Form.Group>
-      </div>
-      <div>
-      <Form.Group  >
-          <Form.Label>Ingresar un mes  </Form.Label>
-          <Form.Control type="number" id="mes1" required min="1" max="12" /></Form.Group>
-      </div>     
-      <div class="card-body">
-      <Button variant="success" type="submit"><h4>Iniciar</h4></Button>
-       </div>
-      </Form>  
-     </div>     
+    
     </div>
   );
 
