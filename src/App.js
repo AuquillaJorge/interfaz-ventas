@@ -70,9 +70,11 @@ function App() {
 
   
   const mostrarAlerta = (a) => {
+    let b = parseInt(a)+ 1325
+    let c = parseInt(a)- 1325
     swal({
       title: "Ventas Realizadas",
-      text: "Se pronostica un total de " + a +" Ventas",
+      text: "Se pronostica un total de " + a +" ventas \n Maximo de Ventas: "+ b +"\n Minimo de ventas: "+c,
       icon: "info",
       button: "Ok"
     })
@@ -86,7 +88,7 @@ function App() {
       <Form.Group  >
       <h3>Calculo de Ventas Tienda #1 </h3>    
           <Form.Label>Ingresar un año</Form.Label>
-          <Form.Control type="number" id="anio" required /></Form.Group>
+          <Form.Control type="number" id="anio" required min="2010"/></Form.Group>
       </div>
       <div >
       <Form.Group >
@@ -106,7 +108,7 @@ function App() {
       <Form.Group  >
       <h3>Calculo de Ventas Tienda #2 </h3>
           <Form.Label>Ingresar un año</Form.Label>
-          <Form.Control type="number" id="anio1" required />
+          <Form.Control type="number" id="anio1" required min="2010" />
         </Form.Group>
       </div>
       <div>
