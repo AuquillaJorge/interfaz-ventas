@@ -7,14 +7,11 @@ import swal from 'sweetalert';
 function App() {
 
   const eventSubmit = (event) => {
-    PeticionPut().then();
+    
+    setTimeout(function(){PeticionPut().then(); }, 1000);
     event.preventDefault();
   }
   
-  const eventSubmit1 = (event) => {
-    PeticionPut1().then();
-    event.preventDefault();
-  }
 
 
 
@@ -28,6 +25,8 @@ function App() {
     let formData = new FormData();
     formData.append('anio', anio);
     formData.append('mes', mes);
+    
+
     await fetch('/api/predict',
       {
         method: "POST",
@@ -36,10 +35,10 @@ function App() {
           'Access-Control-Allow-Origin': 'https://micode52.herokuapp.com/api/predict', 
         },
         body: formData
-      }).then( response => response.text()).then(  res=>{mostrarAlerta(conDecimal)} );
+      }).then( response => response.text()).then(  res=>{
+        mostrarAlerta(conDecimal)} );
 
   } 
-
 
 
 
@@ -61,20 +60,13 @@ function App() {
         },
         body: formData
       }).then( response => response.text()).then(  res=>{
-        test();
+    
         mostrarAlerta(conDecimal)
       } );
 
   } 
        
-  async function test() {
-    console.log('start timer');
-    await delay(6000);
-    console.log('after 1 second');
-  }
-  function delay(time) {
-    return new Promise(resolve => setTimeout(resolve, time));
-  }
+
   
   const mostrarAlerta = (a) => {
     let b = parseInt(a)+ 1325
